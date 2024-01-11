@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "916119675285",
+    "project_id": "reds-365c3",
+    "storage_bucket": "reds-365c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916119675285:android:900c0cf03f815aca83569c",
+        "android_client_info": {
+          "package_name": "com.example.red"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916119675285-20ai1vpgf09bg3paajec0dsnmcdn4sf9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.red",
+            "certificate_hash": "b03fa093438ed6b2fd706108361ea20806a73b57"
+          }
+        },
+        {
+          "client_id": "916119675285-5ilfvk7t9v8hk98mar62cmm8ihi24fje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBriF9dgw3BchaomkNJl_f3flH5ha70myg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916119675285-5ilfvk7t9v8hk98mar62cmm8ihi24fje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
