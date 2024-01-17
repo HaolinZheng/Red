@@ -29,4 +29,9 @@
         android:name="com.example.red.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/new_post"
+        android:name="com.example.red.new_post"
+        android:label="fragment_new_post"
+        tools:layout="@layout/fragment_new_post" />
 </navigation>
