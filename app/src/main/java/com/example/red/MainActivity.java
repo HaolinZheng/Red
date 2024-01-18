@@ -61,14 +61,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
                 if(user != null){
+                    if (user.getPhotoUrl() == null)
+                    {
+                        photo.setImageResource(R.drawable.user);
+                    }
+                    else {
                     Glide.with(MainActivity.this)
                             .load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString())
                             .circleCrop()
                             .into(photo);
                     name.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                     email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    }
+                    if(user.getDisplayName().isEmpty()){
+                        name.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    }
+                    else {
+                        name.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                    }
                 }
             }
         });

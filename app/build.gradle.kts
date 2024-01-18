@@ -52,4 +52,9 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:17.0.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation ("com.firebaseui:firebase-ui-auth:8.0.2")
+    implementation ("com.firebaseui:firebase-ui-storage:8.0.2")
+    implementation ("com.google.firebase:firebase-bom:32.7.0")
 }
