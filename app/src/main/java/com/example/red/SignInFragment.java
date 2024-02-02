@@ -1,6 +1,7 @@
 package com.example.red;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,10 +32,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignInFragment extends Fragment {
 
     NavController navController;
+
+    User user;
 
     private EditText emailEditText, passwordEditText;
     private Button emailSignInButton;
@@ -121,6 +125,7 @@ public class SignInFragment extends Fragment {
                 .build());
 
         startActivityForResult(googleSignInClient.getSignInIntent(), 12345);
+
     }
 
     @Override
@@ -149,6 +154,8 @@ public class SignInFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Log.e("ABCD", "signInWithCredential:success");
                             actualizarUI(mAuth.getCurrentUser());
+                            User user = new User(mAuth.getUid(), mAuth.getCurrentUser().getDisplayName(), mAuth.getCurrentUser().getPhotoUrl().toString());
+                            FirebaseFirestore.getInstance().collection("users").document(user.getUid()).set(user);
                         } else {
                             Log.e("ABCD", "signInWithCredential:failure", task.getException());
                             signInProgressBar.setVisibility(View.GONE);

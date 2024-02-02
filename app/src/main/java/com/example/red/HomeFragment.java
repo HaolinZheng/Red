@@ -23,7 +23,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -84,14 +87,17 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected void onBindViewHolder(@NonNull PostViewHolder holder, int position, @NonNull final Post post) {
-            if (post.authorPhotoUrl == null){
-                Glide.with(getContext()).load(R.drawable.yohsr).circleCrop().into(holder.authorPhotoImageView);
-            }
-            else{
-                Glide.with(getContext()).load(post.authorPhotoUrl).circleCrop().into(holder.authorPhotoImageView);
-            }
-            holder.authorTextView.setText(post.author);
-            holder.contentTextView.setText(post.content);
+            DocumentReference userFromFirebase = FirebaseFirestore.getInstance().collection("users").document(post.uid);
+            userFromFirebase.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    User usuario = documentSnapshot.toObject(User.class);
+
+                    holder.authorTextView.setText(usuario.getName());
+                    holder.contentTextView.setText(post.content);
+                    Glide.with(getContext()).load(usuario.getFoto()).circleCrop().into(holder.authorPhotoImageView);
+                }
+            });
 
             // Gestion de likes
             final String postKey = getSnapshots().getSnapshot(position).getId();
